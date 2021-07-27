@@ -1,7 +1,4 @@
 //WAP to find the sum of each row or column in a 2D array.
-
-
-
 #include <stdio.h>  
    
 int main()  
@@ -24,7 +21,7 @@ int main()
     for(int i = 0; i < rows; i++){  
         sumRow = 0;  
         for(int j = 0; j < cols; j++){  
-          sumRow = sumRow + a[i][j];  
+          sumRow = sumRow + a[i][j];  //column is fixed and row is changing
         }  
         printf("Sum of %d row: %d\n", (i+1), sumRow);  
     }  
@@ -33,7 +30,7 @@ int main()
     for(int i = 0; i < cols; i++){  
         sumCol = 0;  
         for(int j = 0; j < rows; j++){  
-          sumCol = sumCol + a[j][i];  
+          sumCol = sumCol + a[j][i];  //row is fixed and column is changing
         }  
         printf("Sum of %d column: %d\n", (i+1), sumCol);  
     }  
@@ -44,13 +41,99 @@ int main()
 
 
 
+/* C Program to find the maximum element in each row of a matrix */
+
+//Input the order of the matrix.
+//Input the matrix elements.
+//For row = 0 to n-1
+//Find the maximum element in the row and insert the element in an array.
+//Print the array.
+
+#include<stdio.h>
+
+void display(int result[], int n)
+{
+	int i;
+	for(i = 0; i < n; i++)
+	{
+		printf(“%d “, result[i]);
+	}
+}
+
+void maxi_row(int mat[][3], int m, int n)
+{
+	int i = 0, j;
+	int max = 0;
+	int result[m];
+	while (i < m)
+	{
+		for ( j = 0; j < n; j++)
+		{
+			if (mat[i][j] > max)
+			{
+				max = mat[i][j];
+			}
+		}
+		result[i] = max;
+		max = 0;
+		i++;
+	
+	}
+display(result, m);
+}
+
+int main()
+{
+	int m, n;
+	scanf(“%d %d”,&m,&n);
+	int i, j;
+	int mat1[m][n];
+	for(i = 0; i < m; i++)
+	{
+		for(j = 0; j < n; j++)
+			scanf(“%d”,&mat1[i][j]);
+	}
+	
+	maxi_row(mat1,m,n);
+	return 0;
+}
+
+
+//Print the sum of diagonals in a matrix
+
+
+int sumL=0,sumR=0;
+if(i==j)
+{
+	sumL+=a[i][j];
+}
+
+if(i+j==order-1)
+{
+	sumR+=a[i][j];
+}
+
+
+//Interchange the diagonals of a 2D matrix
+//Only for square matrix
+
+
+//Swapping the diagonals
+for(i=0;i<n;i++)
+{
+	//swap(a[i][i],a[i][n-i-1]);
+	int temp = a[i][i];
+	a[i][i]=a[i][n-i-1];
+	a[i][n-i-1]=temp;
+}
+
 
 
 
 
 //WAP to find the sum of elements in each row and each column of the given matrix and print the greatest of the same.
 
-#include
+#include<stdio.h>
 
 int main()
 {
@@ -76,12 +159,12 @@ int main()
 						sum += mat[row][col];
 					}
 			printf(“%d “,sum);
-			row_arr[z++] = sum;
+			row_arr[z++] = sum; //Storing the sum of rows in an array
 		}
 	int temp_row = row_arr[0];
 	for(i=1;i<m;i++)
 		{
-			if(temp_row < row_arr[i])
+			if(temp_row < row_arr[i]) //Finding max sum from the array
 				{
 					temp_row = row_arr[i];
 					row_ind = i;
@@ -123,47 +206,5 @@ int main()
 
 
 
-
-//assuming N*M Matrix elements are separated by space and its output be largest sum among rows and columns 
-//and print the respective row or column.
-
-
-
-
-int m=input.length;
-  int n=input[0].length;
-  int max = Integer.MIN_VALUE;
-  int q = 0;
-  String s = "";
-  for(int i=0; i<m; i++)
-  {
-    int sum=0;
-    for(int j=0; j<n; j++)
-    {
-      sum =sum +input[i][j];
-
-    }
-    if(sum>max){
-      max = sum;
-      q = i;
-      s = "row";
-    }
-  }
-  for(int i=0; i<n; i++)
-  {
-   int sum=0;
-    for(int j=0; j<m; j++)
-    {
-      sum=sum +input[j][i];
-
-    }
-  if(sum>max){
-    max = sum;
-    q = i;
-    s = "column";
-  } 
-  }
-  System.out.println(s + " "  + q + " " + max);
-}
 
 
