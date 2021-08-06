@@ -2,26 +2,43 @@
 
 #include <stdio.h>
 #include <conio.h>
+#include <stdbool.h>
+
+bool isUnique(int num)
+{
+	bool unique[10];
+	int digit;
+	while(num>0)
+	{
+		digit=num%10;
+		if(unique[digit])
+		{
+			return false;
+		}
+		else
+		{
+			unique[digit]=1;
+		}
+		num=num/10;
+	}
+	return true;
+	
+}
+
+
 
 int main()
 {
 	int n,i,ur,lr;
 	int d,rem=0;
-	int count=0;
+	int count=0;//check
 	printf("Enter the lower range: ");
 	scanf("%d",&lr);
 	printf("Enter the upper range: ");
 	scanf("%d",&ur);
 	for(i=lr;i<=ur;i++)
 	{
-		int l=i;
-		while(l>0)
-		{
-			d=l%10;
-			rem=rem*10+d;
-			l=l/10;
-		}
-		if(rem!=i)
+		if(isUnique(i))
 		{
 			count++;
 		}

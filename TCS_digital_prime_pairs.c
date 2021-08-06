@@ -23,7 +23,7 @@
 #include <conio.h>
 #include <math.h>
 
-int check(int num)
+int checkprime(int num)
 {
 	int i,j,s=0;
 	for(i=2;i<num;i++)
@@ -34,7 +34,7 @@ int check(int num)
 		}
 		
 	}
-	return(s);
+	return s;
 		
 }
 
@@ -47,37 +47,22 @@ int main()
 	scanf("%d",&ur);
 	printf("Enter the lower range: ");
 	scanf("%d",&lr);
-	for(i=lr;i<=ur;i++)
+	for(i=lr;i+6<=ur;i++)
 	{
 		//Check if i and other number is prime and diff is 6
-		for(j=i+1;j<=ur;j++)
+		if(checkprime(i)==0 && checkprime(i+6)==0)
 		{
-			//Check if i and j are prime
-			k=check(i);
-			p=check(j);
-			
-			if(k==0 && p==0)
-			{
-				if(abs(i-j)==6)
-				{
-					printf("%d,%d",i,j);
-					count++;
-				}
-				
-			}
-			
-			
+			count++;
+			printf("%d, %d",i,i+6);
+			printf("\n");
 		}
-		if(count==0)
-		{
-			printf("No prime pairs");
-		}
-		
+			
+	
 		
 		
 	}
 	
-	
+	printf("%d",count);
 }
 
 
