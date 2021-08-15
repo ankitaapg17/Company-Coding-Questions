@@ -23,9 +23,8 @@
 //Array (insert,search,delete)
 //Reverse the array
 //Rotate Array
-//Count of smaller elements
-//Remove duplicate elements from sorted Array
-//Merge 2 sorted arrays without using Extra space.
+
+
 //Find the "Kth" max and min element of an array 
 //Move all the negative elements to one side of the array 
 //Find the Union and Intersection of the two sorted arrays.
@@ -35,13 +34,13 @@
 //Find the triplet that sum to a given value
 //Median of 2 sorted arrays of equal size
 //Median of 2 sorted arrays of different size
-//
-//
-//
-//
+
+
+
+
 //String :
-//
-//
+
+
 //Reverse a String
 //Find Duplicate characters in a string
 //Print all Subsequences of a string.
@@ -75,47 +74,6 @@
 
 
 
-int main()
-{
-	int num, difference=0;    
-boolean flag = true;  
-Scanner sc = new Scanner(System.in);  
-System.out.print("Enter a number: ");  
-//reads an integer from the user  
-num=sc.nextInt();  
-//assigning num to n  
-int n = num;  
-//execute until the condition becomes false  
-while(num != 0)  
-{  
-//determines the last digit from the given number      
-int digit1 = num % 10;  
-//removes the last digit   
-num = num/10;  
-//checks if the number is equal to 0 or not  
-if(num != 0)  
-{  
-//if the above condition returns true  
-//determines the second last digit from the number  
-int digit2 = num % 10;  
-//subtract the digits and finds the absolute value  
-//after that checks if the difference of two adjacent digit is equal to 1 or not  
-if(Math.abs(digit1 - digit2) != 1)  
-{  
-//if the difference is not equal to 1, set flag to false      
-flag = false;  
-//breaks the execution  
-break;  
-}//end of if 2nd statement   
-}//end of if 1st statement   
-}//end of while  
-if(flag)  
-System.out.println(n + " is a jumping number.");  
-else  
-System.out.println(n + " is not a jumping number.");  
-}  
-}  
-}
 
 
 
@@ -296,5 +254,108 @@ int main()
 
 	cout << binaryToDecimal(num) << endl;
 }
+
+
+
+
+
+
+//The GCD of three or more numbers equals the product of the prime factors common to all the numbers,
+//but it can also be calculated by repeatedly taking the GCDs of pairs of numbers. 
+//For an array of elements, we do the following. We will also check for the result if the result at any step becomes 1
+//we will just return the 1 as gcd(1,x)=1.  
+
+// C++ program to find GCD of two or
+// more numbers
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to return gcd of a and b
+int gcd(int a, int b)
+{
+	if (a == 0)
+		return b;
+	return gcd(b % a, a);
+}
+
+// Function to find gcd of array of
+// numbers
+int findGCD(int arr[], int n)
+{
+	int result = arr[0];
+	for (int i = 1; i < n; i++)
+	{
+		result = gcd(arr[i], result);
+
+		if(result == 1)
+		{
+		return 1;
+		}
+	}
+	return result;
+}
+
+// Driver code
+int main()
+{
+	int arr[] = { 2, 4, 6, 8, 16 };
+	int n = sizeof(arr) / sizeof(arr[0]);
+	cout << findGCD(arr, n) << endl;
+	return 0;
+}
+
+
+
+
+
+
+//We find value of n/m. Let this value be q. Then we find closest of two possibilities. 
+//One is q * m other is (m * (q + 1)) or (m * (q – 1)) depending on whether one of the given two numbers is negative or not.
+// C++ implementation to find the number closest to n
+// and divisible by m
+#include <bits/stdc++.h>
+
+using namespace std;
+
+// function to find the number closest to n
+// and divisible by m
+int closestNumber(int n, int m)
+{
+	// find the quotient
+	int q = n / m;
+	
+	// 1st possible closest number
+	int n1 = m * q;
+	
+	// 2nd possible closest number
+	int n2 = (n * m) > 0 ? (m * (q + 1)) : (m * (q - 1));
+	
+	// if true, then n1 is the required closest number
+	if (abs(n - n1) < abs(n - n2))
+		return n1;
+	
+	// else n2 is the required closest number
+	return n2;
+}
+
+// Driver program to test above
+int main()
+{
+	int n = 13, m = 4;
+	cout << closestNumber(n, m) << endl;
+	
+	n = -15; m = 6;
+	cout << closestNumber(n, m) << endl;
+	
+	n = 0; m = 8;
+	cout << closestNumber(n, m) << endl;
+	
+	n = 18; m = -7;
+	cout << closestNumber(n, m) << endl;
+	
+	return 0;
+}
+
+
 
 
